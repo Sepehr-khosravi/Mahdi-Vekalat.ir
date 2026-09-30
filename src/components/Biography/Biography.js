@@ -1,5 +1,5 @@
 import "./Biography.css";
-import profileImage from "../../assets/images/my profouls22-new.png";
+import profileImage from "../../assets/images/profile-secondary.webp";
 
 function Biography() {
   return (
