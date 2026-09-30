@@ -52,14 +52,24 @@ function Footer() {
 
         <div className="footer__contact">
           <span>شروع گفتگو</span>
-
-          <a
-            href="https://wa.me/989361449908"
-            target="_blank"
-            rel="noreferrer"
-          >
-            واتساپ ↗
-          </a>
+        
+          <div className="footer__contact-links">
+            <a
+              href="https://wa.me/989361449908"
+              target="_blank"
+              rel="noreferrer"
+            >
+              واتساپ ↗
+            </a>
+        
+            <a
+              href="https://web.telegram.org/k/#@vkmhdi"
+              target="_blank"
+              rel="noreferrer"
+            >
+              تلگرام ↗
+            </a>
+          </div>
         </div>
       </div>
 
