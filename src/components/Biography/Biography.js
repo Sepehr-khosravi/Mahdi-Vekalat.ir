@@ -6,10 +6,13 @@ function Biography() {
     <section id="biography" className="biography">
       <div className="biography__inner">
         <div className="biography__visual">
-          <div className="biography__image-frame">
+          <div className="biography__image-frame biography__image-skeleton">
             <img
               src={profileImage}
               alt="مهدی فیروزروستا"
+              onLoad={(event) => {
+                event.currentTarget.classList.add("is-loaded");
+              }}
             />
           </div>
 

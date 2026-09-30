@@ -1,6 +1,6 @@
 .biography {
   padding: 120px 0;
-  border-top: 1px solid #2a2a2d;
+  background: #18181b;
 }
 
 .biography__inner {
@@ -9,12 +9,10 @@
 
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  gap: 100px;
+  gap: 90px;
 
   align-items: center;
 }
-
-/* Visual */
 
 .biography__visual {
   position: relative;
@@ -22,68 +20,115 @@
 
 .biography__image-frame {
   position: relative;
-  overflow: hidden;
 
   width: 100%;
-  max-width: 470px;
   aspect-ratio: 4 / 5;
 
-  margin-right: auto;
+  overflow: hidden;
 
+  border: 1px solid #2a2a2d;
   background: #202023;
-  border: 1px solid #303034;
 }
 
 .biography__image-frame::after {
   content: "";
 
   position: absolute;
-  inset: 18px;
+  inset: 14px;
 
-  border: 1px solid rgba(29, 216, 101, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
   pointer-events: none;
 }
 
-.biography__image-frame img {
+/* Skeleton */
+
+.biography__image-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #202023;
+}
+
+.biography__image-skeleton::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+
+  transform: translateX(100%);
+  animation: biographySkeletonShimmer 1.5s infinite;
+
+  pointer-events: none;
+}
+
+.biography__image-skeleton img {
   width: 100%;
   height: 100%;
 
   object-fit: cover;
 
-  filter: saturate(0.85);
+  opacity: 0;
+
+  transition: opacity 350ms ease;
 }
+
+.biography__image-skeleton img.is-loaded {
+  opacity: 1;
+}
+
+@keyframes biographySkeletonShimmer {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Experience badge */
 
 .biography__year {
   position: absolute;
+  z-index: 2;
 
-  left: -28px;
-  bottom: 42px;
+  left: -34px;
+  bottom: 34px;
 
-  width: 170px;
-  padding: 18px;
+  width: 145px;
+  min-height: 145px;
 
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
 
   background: #202023;
-  border: 1px solid #343438;
+  border: 1px solid #303033;
 
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  text-align: center;
 }
 
 .biography__year span {
-  color: #a1a1aa;
-  font-size: 12px;
+  color: #71717a;
+
+  font-size: 11px;
+  line-height: 1.6;
 }
 
 .biography__year strong {
   margin: 2px 0;
 
   color: #1dd865;
+
   font-size: 38px;
   line-height: 1;
+  font-weight: 700;
 }
 
 /* Content */
@@ -92,62 +137,92 @@
   max-width: 620px;
 }
 
-.biography__content h2 {
-  margin-top: 18px;
+.section-heading__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-  font-size: clamp(36px, 4vw, 58px);
-  line-height: 1.25;
+  margin-bottom: 22px;
+
+  color: #1dd865;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.section-heading__label::before {
+  content: "";
+
+  width: 28px;
+  height: 1px;
+
+  background: #1dd865;
+}
+
+.biography__content h2 {
+  margin-bottom: 28px;
+
+  color: #fff;
+
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.3;
+  font-weight: 700;
   letter-spacing: -1.5px;
 }
 
 .biography__content h2 span {
-  display: block;
-  color: #77777f;
+  color: #71717a;
 }
 
 .biography__content > p {
   color: #a1a1aa;
-  font-size: 16px;
+
+  font-size: 15px;
   line-height: 2.1;
 }
 
-.biography__lead {
-  margin-top: 30px;
-  margin-bottom: 12px;
+.biography__content .biography__lead {
+  margin-bottom: 16px;
 
-  color: #d4d4d8 !important;
+  color: #d4d4d8;
+
+  font-size: 16px;
+  line-height: 2.1;
 }
 
 /* Points */
 
 .biography__points {
-  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
 
-  border-top: 1px solid #303034;
+  margin-top: 34px;
+
+  border-top: 1px solid #27272a;
 }
 
 .biography__points > div {
-  min-height: 62px;
-  padding: 16px 0;
-
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 18px;
 
-  border-bottom: 1px solid #303034;
+  padding: 18px 0;
+
+  border-bottom: 1px solid #27272a;
 }
 
-.biography__points span {
-  color: #1dd865;
-  font-size: 13px;
+.biography__points > div > span {
+  color: #52525b;
+
+  font-size: 11px;
   font-weight: 600;
 }
 
 .biography__points p {
-  margin: 0;
-
   color: #d4d4d8;
+
   font-size: 14px;
+  line-height: 1.8;
 }
 
 /* Link */
@@ -155,11 +230,12 @@
 .biography__link {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 
-  margin-top: 34px;
+  margin-top: 30px;
 
   color: #fff;
+
   font-size: 14px;
   font-weight: 600;
 
@@ -172,15 +248,16 @@
 
 .biography__link span {
   color: #1dd865;
+
   font-size: 18px;
 }
 
 .biography__link:hover {
   color: #1dd865;
-  gap: 18px;
+  gap: 14px;
 }
 
-/* Responsive */
+/* Tablet */
 
 @media (max-width: 900px) {
   .biography {
@@ -192,40 +269,49 @@
     gap: 60px;
   }
 
-  .biography__image-frame {
+  .biography__visual {
+    width: min(500px, 100%);
     margin: 0 auto;
-  }
-
-  .biography__year {
-    left: 20px;
   }
 
   .biography__content {
     max-width: none;
   }
+
+  .biography__year {
+    left: -20px;
+    bottom: 24px;
+  }
 }
+
+/* Mobile */
 
 @media (max-width: 600px) {
   .biography {
-    padding: 72px 0;
+    padding: 75px 0;
   }
 
   .biography__inner {
     width: min(100% - 32px, 1200px);
+    gap: 45px;
   }
 
   .biography__image-frame {
-    max-width: 100%;
+    aspect-ratio: 4 / 5;
   }
 
   .biography__image-frame::after {
-    inset: 12px;
+    inset: 10px;
   }
 
   .biography__year {
     left: 12px;
-    bottom: 20px;
-    width: 145px;
+    bottom: 18px;
+
+    width: 120px;
+    min-height: 120px;
+
+    padding: 16px;
   }
 
   .biography__year strong {
@@ -233,15 +319,44 @@
   }
 
   .biography__content h2 {
-    font-size: 34px;
+    margin-bottom: 22px;
+
+    font-size: 32px;
+    letter-spacing: -0.8px;
   }
 
-  .biography__content > p {
+  .biography__content > p,
+  .biography__content .biography__lead {
     font-size: 14px;
     line-height: 2;
   }
 
   .biography__points {
     margin-top: 28px;
+  }
+
+  .biography__points > div {
+    gap: 14px;
+    padding: 15px 0;
+  }
+}
+
+/* Small mobile */
+
+@media (max-width: 400px) {
+  .biography__year {
+    width: 105px;
+    min-height: 105px;
+
+    left: 10px;
+    bottom: 14px;
+  }
+
+  .biography__year strong {
+    font-size: 28px;
+  }
+
+  .biography__year span {
+    font-size: 10px;
   }
 }

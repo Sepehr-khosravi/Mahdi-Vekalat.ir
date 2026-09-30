@@ -42,13 +42,16 @@ function Hero() {
         </div>
 
         <div className="hero__visual">
-          <div className="hero__visual-frame">
+          <div className="hero__visual-frame hero__image-skeleton">
             <img
               src={profileImage}
               alt="مهدی فیروزروستا، وکیل پایه یک دادگستری"
+              onLoad={(event) => {
+                event.currentTarget.classList.add("is-loaded");
+              }}
             />
           </div>
-
+        
           <div className="hero__experience">
             <strong>10+</strong>
             <span>سال تجربه حرفه‌ای</span>
