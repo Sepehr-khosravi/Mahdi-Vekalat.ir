@@ -1,0 +1,549 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+
+  width: 100%;
+  height: 84px;
+
+  background: rgba(24, 24, 27, 0.88);
+  border-bottom: 1px solid #2a2a2d;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.navbar__inner {
+  width: min(1200px, calc(100% - 48px));
+  height: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* =========================
+   Logo
+========================= */
+
+.navbar__logo-image {
+  width: 150px;
+  height: 48px;
+
+  display: block;
+
+  object-fit: contain;
+  object-position: right center;
+}
+
+.navbar__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #fff;
+  text-decoration: none;
+}
+
+/* .navbar__logo-mark {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  color: #111113;
+  background: #1dd865;
+
+  font-size: 20px;
+  font-weight: 800;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+} */
+
+/* .navbar__logo:hover .navbar__logo-mark {
+  transform: translateY(-2px);
+  background: #35e979;
+} */
+
+/* .navbar__logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.navbar__logo-text small {
+  color: #71717a;
+
+  font-size: 9px;
+  font-weight: 400;
+} */
+
+/* =========================
+   Desktop navigation
+========================= */
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.navbar__links a {
+  position: relative;
+
+  color: #a1a1aa;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition: color 180ms ease;
+}
+
+.navbar__links a::after {
+  content: "";
+
+  position: absolute;
+  right: 0;
+  bottom: -8px;
+
+  width: 0;
+  height: 1px;
+
+  background: #1dd865;
+
+  transition: width 180ms ease;
+}
+
+.navbar__links a:hover {
+  color: #fff;
+}
+
+.navbar__links a:hover::after {
+  width: 100%;
+}
+
+/* =========================
+   Actions
+========================= */
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 11px 16px;
+
+  color: #111113;
+  background: #1dd865;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.navbar__cta:hover {
+  transform: translateY(-2px);
+  background: #35e979;
+}
+
+.navbar__cta-arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* =========================
+   Mobile menu button
+========================= */
+
+.navbar__menu-button {
+  display: none;
+
+  width: 44px;
+  height: 44px;
+
+  padding: 0;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+
+  background: transparent;
+  border: 1px solid #343438;
+
+  cursor: pointer;
+}
+
+.navbar__menu-button span {
+  display: block;
+
+  width: 18px;
+  height: 1px;
+
+  background: #fff;
+
+  transition:
+    transform 220ms ease,
+    opacity 180ms ease;
+}
+
+.navbar__menu-button.is-open span:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.navbar__menu-button.is-open span:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+/* =========================
+   Overlay
+========================= */
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+
+  background: rgba(0, 0, 0, 0.68);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 280ms ease,
+    visibility 280ms ease;
+}
+
+.mobile-menu-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================
+   Drawer
+========================= */
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+
+  width: min(410px, 90vw);
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 26px;
+
+  background: #1c1c1f;
+  border-left: 1px solid #343438;
+
+  box-shadow: -30px 0 80px rgba(0, 0, 0, 0.35);
+
+  transform: translateX(100%);
+
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+/* =========================
+   Drawer header
+========================= */
+
+.mobile-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 22px;
+
+  border-bottom: 1px solid #343438;
+}
+
+.mobile-drawer__label {
+  color: #71717a;
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.mobile-drawer__close {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  color: #fff;
+  background: #18181b;
+  border: 1px solid #343438;
+
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.mobile-drawer__close:hover {
+  color: #1dd865;
+  border-color: #1dd865;
+}
+
+/* =========================
+   Drawer intro
+========================= */
+
+.mobile-drawer::before {
+  content: "مهدی فیروزروستا";
+
+  margin-top: 34px;
+
+  color: #fff;
+
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.mobile-drawer::after {
+  content: "وکیل پایه یک دادگستری";
+
+  margin-top: 5px;
+
+  color: #71717a;
+
+  font-size: 11px;
+}
+
+/* =========================
+   Drawer navigation
+========================= */
+
+.mobile-drawer__nav {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 34px;
+}
+
+.mobile-drawer__nav a {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding: 18px 4px;
+
+  color: #d4d4d8;
+
+  border-bottom: 1px solid #303034;
+
+  font-size: 19px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  opacity: 0;
+  transform: translateX(18px);
+
+  transition:
+    color 180ms ease,
+    padding-right 180ms ease;
+}
+
+.mobile-drawer.is-open .mobile-drawer__nav a {
+  animation: drawerItemIn 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.mobile-drawer.is-open .mobile-drawer__nav a:nth-child(1) {
+  animation-delay: 80ms;
+}
+
+.mobile-drawer.is-open .mobile-drawer__nav a:nth-child(2) {
+  animation-delay: 130ms;
+}
+
+.mobile-drawer.is-open .mobile-drawer__nav a:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.mobile-drawer.is-open .mobile-drawer__nav a:nth-child(4) {
+  animation-delay: 230ms;
+}
+
+.mobile-drawer__nav a::before {
+  content: "";
+
+  position: absolute;
+  right: -26px;
+  top: 50%;
+
+  width: 2px;
+  height: 0;
+
+  background: #1dd865;
+
+  transform: translateY(-50%);
+
+  transition: height 180ms ease;
+}
+
+.mobile-drawer__nav a span {
+  min-width: 24px;
+
+  color: #52525b;
+
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.mobile-drawer__nav a:hover {
+  padding-right: 10px;
+  color: #1dd865;
+}
+
+.mobile-drawer__nav a:hover::before {
+  height: 28px;
+}
+
+.mobile-drawer__nav a:hover span {
+  color: #1dd865;
+}
+
+@keyframes drawerItemIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* =========================
+   Drawer footer
+========================= */
+
+.mobile-drawer__footer {
+  margin-top: auto;
+  padding-top: 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-drawer__footer > span {
+  color: #71717a;
+
+  font-size: 10px;
+}
+
+.mobile-drawer__footer a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 18px;
+
+  color: #111113;
+  background: #1dd865;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.mobile-drawer__footer a:hover {
+  background: #35e979;
+  transform: translateY(-2px);
+}
+
+.mobile-drawer__footer a span {
+  font-size: 18px;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 800px) {
+  .navbar {
+    height: 72px;
+  }
+
+  .navbar__inner {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .navbar__links,
+  .navbar__cta {
+    display: none;
+  }
+
+  .navbar__menu-button {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar__logo-image {
+    width: 125px;
+    height: 42px;
+  }
+
+  .mobile-drawer {
+    width: 92vw;
+    padding: 22px;
+  }
+
+  .mobile-drawer::before {
+    font-size: 23px;
+  }
+
+  .mobile-drawer__nav a::before {
+    right: -22px;
+  }
+}
+/* .navbar {
+  margin-right: 76px;
+}
+
+main,
+.footer {
+  margin-right: 76px;
+} */
